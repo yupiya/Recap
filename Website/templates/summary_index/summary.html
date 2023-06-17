@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Summary - Auto Paper Summary</title>
+        {% load static %}
+		<meta charset="utf-8" />
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="{% url 'index' %}" class="logo">Auto Paper Summary</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="{% url 'index' %}">Introduction</a></li>
+							<li class="active"><a href="{% url 'summary' %}">Text Summary</a></li>
+							<li><a href="{% url 'about' %}">About Us</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/tty8128" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/tty8128" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.instagram.com/adkmrx/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/8128/Auto-Paper-Summary" class="icon fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+                        <!-- Form -->
+                            <form method="post" action="{% url 'summary' %}">
+                                {% csrf_token %}
+                                <div class="row gtr-uniform">
+                                    <div class="col-12">
+                                        <ul class="actions">
+                                            <li><a href="#usage" class="primary button">Check Usage</a></li>
+                                            <li><a href="#example" class="button">Examples</a></li>
+                                            <!--
+                                            <li><a href="#" class="button">Your History</a></li>
+                                            -->
+                                        </ul>
+                                    </div>
+                                    <!-- Break -->
+                                    <div class="col-12">
+                                        {{ shortform }}
+                                        {% if summary1 %}
+                                            <h3>Result for short text summary:</h3>
+                                            <p>{{ summary1 }}</p>
+                                        {% endif %}
+                                        {% if error1 %}
+                                            <h3>Error:</h3>
+                                            <p>{{ error1 }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <!-- Break -->
+                                    <div class="col-12">
+                                        <ul class="actions">
+                                            <li><input type="submit" value="Summarize" class="primary" /></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+
+                        <!-- Form -->
+                            <form method="post" action="{% url 'summary' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row gtr-uniform">
+                                    <!-- Break -->
+                                    <div class="col-12">
+                                        {% if summary2 %}
+                                            <h3>Result for long text summary:</h3>
+                                            <p>{{ summary2 }}</p>
+                                        {% endif %}
+                                        {% if error2 %}
+                                            <h3>Error:</h3>
+                                            <p>{{ error2 }}</p>
+                                        {% endif %}
+                                    </div>
+                                <input type="file" name="file" required/>
+                                    <!-- Break -->
+                                    <div class="col-12">
+                                        <ul class="actions">
+                                            <li><input type="submit" value="Summarize" class="primary" /></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        <!-- posts-->
+                            <section class="post">
+                                <header class="major">
+                                    <span class="date" id="usage">Usage</span>
+                                </header>
+                                <p>
+                                    For short text summary of which length is shorter than three thousand, you can input your text in the textbox. For long text summary, uploading a txt file is recommended.
+                                </p>
+                                <p>
+                                    Different methods and ratios are used to generate the summary. The results will be different in these two situations. If you are using short text summary, the ratio will be higher and thus the result will become comprehensive and cover more information. If you are using long text summary, then the result will be shorter so you can get rough understanding of the whole article.
+                                </p>
+                            </section>
+
+                        <!-- Posts -->
+							<section class="posts">
+								<article>
+									<header>
+										<span class="date" id="example">Short Text Example 1</span>
+										<h2>The Matrix</h2>
+									</header>
+									<p>Thomas A. Anderson is a man living two lives. By day he is an average computer programmer and by night a hacker known as Neo. Neo has always questioned his reality, but the truth is far beyond his imagination. Neo finds himself targeted by the police when he is contacted by Morpheus, a legendary computer hacker branded a terrorist by the government. Morpheus awakens Neo to the real world, a ravaged wasteland where most of humanity have been captured by a race of machines that live off of the humans' body heat and electrochemical energy and who imprison their minds within an artificial reality known as the Matrix. As a rebel against the machines, Neo must return to the Matrix and confront the agents: super-powerful computer programs devoted to snuffing out Neo and the entire human rebellion.</p>
+								    <ul class="actions">
+							            <li><a href="{% url 'example1' %}" class="button icon solo fa-arrow-up scrolly"></a></li>
+						            </ul>
+                                </article>
+								<article>
+									<header>
+										<span class="date">Short Text Example 2</span>
+										<h2>ANN</h2>
+									</header>
+									<p>In common ANN implementations, the signal at a connection between artificial neurons is a real number, and the output of each artificial neuron is computed by some non-linear function of the sum of its inputs. The connections between artificial neurons are called 'edges'. Artificial neurons and edges typically have a weight that adjusts as learning proceeds. The weight increases or decreases the strength of the signal at a connection. Artificial neurons may have a threshold such that the signal is only sent if the aggregate signal crosses that threshold. Typically, artificial neurons are aggregated into layers. Different layers may perform different kinds of transformations on their inputs. Signals travel from the first layer (the input layer), to the last layer (the output layer), possibly after traversing the layers multiple times.</p>
+									<ul class="actions">
+							            <li><a href="{% url 'example2' %}" class="button icon solo fa-arrow-up scrolly"></a></li>
+						            </ul>
+                                </article>
+								<article>
+									<header>
+										<span class="date">Long Txt Example 1</span>
+										<h2>the matrix synopsis</h2>
+									</header>
+									<a href="http://rare-technologies.com/the_matrix_synopsis.txt" >[TXT]the matrix synopsis</a>
+								    <ul class="actions">
+							            <li><a href="{% url 'example3' %}" class="button icon solo fa-arrow-up scrolly"></a></li>
+						            </ul>
+                                </article>
+								<article>
+									<header>
+										<span class="date">Long Txt Example 2</span>
+										<h2>the big lebowski synopsis</h2>
+									</header>
+									<a href="http://rare-technologies.com/the_big_lebowski_synopsis.txt">[TXT]the big lebowski synopsis</a>
+								    <ul class="actions">
+							            <li><a href="{% url 'example4' %}" class="button icon solo fa-arrow-up scrolly"></a></li>
+						            </ul>
+                                </article>
+							</section>
+
+					</div>
+
+                <!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									{% csrf_token %}
+                                    {{ emailform }}
+								</div>
+                                    <ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+                                <p><a href='https://www.bu.edu/eng/departments/ece/'>Boston University</a><br />
+                                8 St Marys St #02215<br />
+								Boston, MA</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p>(857)-277-4183<br />
+                                (857)-445-9374</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:tty8128@bu.edu">tty8128@bu.edu<br />
+                                cuicyz@bu.edu</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://twitter.com/tty8128" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							        <li><a href="https://www.facebook.com/tty8128" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							        <li><a href="https://www.instagram.com/adkmrx/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							        <li><a href="https://github.com/8128/Auto-Paper-Summary" class="icon fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Tianyi Tang</li><li><a href="mailto:tty8128@bu.edu">tty8128@bu.edu</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
